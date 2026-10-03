@@ -4,43 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
-
-    <style>
-      .container {
-        width: 300px;
-        margin: 50px auto;
-        padding: 20px;
-        background: #222;
-        border-radius: 15px;
-      }
-
-      .result {
-        background: white;
-        padding: 20px;
-        font-size: 30px;
-        text-align: right;
-        margin-bottom: 15px;
-        border-radius: 10px;
-      }
-
-      .click {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-      }
-
-      button {
-        padding: 20px;
-        font-size: 20px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-      }
-
-      button:hover {
-        background: #ddd;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -74,56 +38,6 @@
       </div>
     </div>
 
-    <script>
-      let calculation = "";
-
-      const result = document.getElementById("result");
-
-      function addNumber(number) {
-        calculation += number;
-
-        result.textContent = calculation;
-      }
-
-      function addOperator(operator) {
-        calculation += operator;
-
-        result.textContent = calculation;
-      }
-
-      function calculate() {
-        try {
-          calculation = eval(calculation).toString();
-
-          result.textContent = calculation;
-        } catch {
-          result.textContent = "Error";
-
-          calculation = "";
-        }
-      }
-
-      function clearCalculator() {
-        calculation = "";
-
-        result.textContent = "0";
-      }
-
-      function deleteNumber() {
-        calculation = calculation.slice(0, -1);
-
-        result.textContent = calculation || "0";
-      }
-
-      function calculatePercent() {
-        try {
-          calculation = (eval(calculation) / 100).toString();
-
-          result.textContent = calculation;
-        } catch {
-          result.textContent = "Error";
-        }
-      }
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>

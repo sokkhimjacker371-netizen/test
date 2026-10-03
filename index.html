@@ -1,10 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+
+    <style>
+      .container {
+        width: 300px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #222;
+        border-radius: 15px;
+      }
+
+      .result {
+        background: white;
+        padding: 20px;
+        font-size: 30px;
+        text-align: right;
+        margin-bottom: 15px;
+        border-radius: 10px;
+      }
+
+      .click {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      button {
+        padding: 20px;
+        font-size: 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #ddd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="result" id="result">0</div>
+
+      <div class="click">
+        <button onclick="deleteNumber()">Delete</button>
+        <button onclick="clearCalculator()">AC</button>
+        <button onclick="calculatePercent()">%</button>
+        <button onclick="addOperator('/')">÷</button>
+
+        <button onclick="addNumber('7')">7</button>
+        <button onclick="addNumber('8')">8</button>
+        <button onclick="addNumber('9')">9</button>
+        <button onclick="addOperator('*')">×</button>
+
+        <button onclick="addNumber('4')">4</button>
+        <button onclick="addNumber('5')">5</button>
+        <button onclick="addNumber('6')">6</button>
+        <button onclick="addOperator('-')">−</button>
+
+        <button onclick="addNumber('1')">1</button>
+        <button onclick="addNumber('2')">2</button>
+        <button onclick="addNumber('3')">3</button>
+        <button onclick="addOperator('+')">+</button>
+
+        <button onclick="addNumber('0')">0</button>
+        <button onclick="addNumber('.')">.</button>
+        <button onclick="calculate()" style="grid-column: span 2">=</button>
+      </div>
+    </div>
+
+    <script>
+      let calculation = "";
+
+      const result = document.getElementById("result");
+
+      function addNumber(number) {
+        calculation += number;
+
+        result.textContent = calculation;
+      }
+
+      function addOperator(operator) {
+        calculation += operator;
+
+        result.textContent = calculation;
+      }
+
+      function calculate() {
+        try {
+          calculation = eval(calculation).toString();
+
+          result.textContent = calculation;
+        } catch {
+          result.textContent = "Error";
+
+          calculation = "";
+        }
+      }
+
+      function clearCalculator() {
+        calculation = "";
+
+        result.textContent = "0";
+      }
+
+      function deleteNumber() {
+        calculation = calculation.slice(0, -1);
+
+        result.textContent = calculation || "0";
+      }
+
+      function calculatePercent() {
+        try {
+          calculation = (eval(calculation) / 100).toString();
+
+          result.textContent = calculation;
+        } catch {
+          result.textContent = "Error";
+        }
+      }
+    </script>
+  </body>
 </html>
